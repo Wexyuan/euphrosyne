@@ -1,0 +1,35 @@
+app:
+  name: euphrosyne # application name used in logs and identification
+  env: debug # runtime environment (debug/release/test, case-insensitive)
+  snowflake_node: 1 # snowflake worker node number (0-1023)
+
+server:
+  addr: ":8080" # listen address, ":8080" by default
+  read_timeout: 10s # bounds request reads, defaulting to 10s
+  write_timeout: 10s # bounds response writes, defaulting to 10s
+  shutdown_timeout: 5s # bounds the shutdown, defaulting to 5s
+
+logger:
+  level: info # minimum log level (debug/info/warn/error, case-insensitive)
+  format: console # log encoding format (console/json, case-insensitive)
+  output: stdout # output stream (stdout/stderr, case-insensitive)
+
+database:
+  driver: sqlite # database driver (mysql/postgres/sqlite, case-insensitive)
+  dsn: euphrosyne.db # data source name of the target database
+  max_open_conns: 10 # maximum number of open connections, defaulting to 10
+  max_idle_conns: 2 # maximum number of idle connections, defaulting to 2
+  conn_max_lifetime: 30 # maximum lifetime of a connection in minutes, defaulting to 30
+
+cache:
+  driver: memory # cache driver (memory/redis, case-insensitive)
+  ttl: 300 # default expiration in seconds, defaulting to 300
+  # addr: 127.0.0.1:6379 # redis server address in host:port form
+  # password: "" # redis auth password, empty if auth is disabled
+  # db: 0 # redis logical database number, defaulting to 0
+
+jwt:
+  secret: "change-me-in-production" # HS256 signing key used to sign tokens
+  issuer: euphrosyne # issuer claim written into every token
+  access_ttl: 15m # access token lifetime, defaulting to 15m
+  refresh_ttl: 168h # refresh token lifetime, defaulting to 168h (7 days)
