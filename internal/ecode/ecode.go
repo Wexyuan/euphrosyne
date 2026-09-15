@@ -12,3 +12,10 @@ var (
 	ErrNotFound       = errs.New(1005, "not found error")
 	ErrTimeout        = errs.New(1006, "timeout error")
 )
+
+// User error codes, ranged 2100-2199.
+var (
+	ErrUserNotFound = errs.New(2100, "user not found error")
+	ErrUserExists   = errs.New(2101, "user already exists error")
+	ErrUserDisabled = errs.New(2102, "user disabled error")
+)
