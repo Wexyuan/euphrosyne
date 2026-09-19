@@ -20,9 +20,9 @@ type Database struct {
 type Options struct {
 	Driver          string // database driver (mysql/postgres/sqlite)
 	DSN             string // data source name
-	MaxOpenConns    int    // max open connections (defaulting to 10)
-	MaxIdleConns    int    // max idle connections (defaulting to 2)
-	ConnMaxLifetime int    // max connection lifetime in minutes (defaulting to 30)
+	MaxOpenConns    int    // max open connections (default to 10)
+	MaxIdleConns    int    // max idle connections (default to 2)
+	ConnMaxLifetime int    // max connection lifetime in minutes (default to 30)
 }
 
 func New(opts Options) (*Database, error) {
