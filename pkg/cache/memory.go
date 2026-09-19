@@ -10,12 +10,12 @@ import (
 
 // memoryCache is the in-memory cache.
 type memoryCache struct {
-	client *gocache.Cache
-	ttl    time.Duration
+	store *gocache.Cache // underlying in-memory store
+	ttl   time.Duration  // default expiration
 }
 
 func newMemoryCache(ttl time.Duration) *memoryCache {
-	return &memoryCache{client: gocache.New(ttl, 2*ttl), ttl: ttl}
+	return &memoryCache{store: gocache.New(ttl, 2*ttl), ttl: ttl}
 }
 
 // Set stores the value under the key.
@@ -24,13 +24,13 @@ func (c *memoryCache) Set(ctx context.Context, key, value string, ttl int) error
 	if ttl <= 0 {
 		ttl = int(c.ttl.Seconds())
 	}
-	c.client.Set(key, value, time.Duration(ttl)*time.Second)
+	c.store.Set(key, value, time.Duration(ttl)*time.Second)
 	return nil
 }
 
 // Get loads the value under the key, empty when missing.
 func (c *memoryCache) Get(ctx context.Context, key string) (string, error) {
-	value, found := c.client.Get(key)
+	value, found := c.store.Get(key)
 	if !found {
 		return "", nil
 	}
@@ -44,13 +44,13 @@ func (c *memoryCache) Get(ctx context.Context, key string) (string, error) {
 
 // Delete removes the key.
 func (c *memoryCache) Delete(ctx context.Context, key string) error {
-	c.client.Delete(key)
+	c.store.Delete(key)
 	return nil
 }
 
 // Exists reports whether the key exists.
 func (c *memoryCache) Exists(ctx context.Context, key string) (bool, error) {
-	_, found := c.client.Get(key)
+	_, found := c.store.Get(key)
 	return found, nil
 }
 

@@ -11,8 +11,8 @@ import (
 
 // redisCache is the redis-backed cache.
 type redisCache struct {
-	client *redis.Client
-	ttl    time.Duration
+	client *redis.Client // underlying redis client
+	ttl    time.Duration // default expiration
 }
 
 func newRedisCache(opts Options, ttl time.Duration) (*redisCache, error) {
