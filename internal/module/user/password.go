@@ -4,6 +4,9 @@ import (
 	"fmt"
 
 	"golang.org/x/crypto/bcrypt"
+
+	"github.com/Wexyuan/euphrosyne/internal/ecode"
+	"github.com/Wexyuan/euphrosyne/pkg/errs"
 )
 
 const (
@@ -18,11 +21,13 @@ const (
 // HashPassword hashes the plain password.
 func HashPassword(plain string) (string, error) {
 	if len([]rune(plain)) < minPasswordLen || len([]rune(plain)) > maxPasswordLen {
-		return "", fmt.Errorf("[user] password length must be between %d and %d", minPasswordLen, maxPasswordLen)
+		return "", errs.New(ecode.ErrValidation.Code,
+			fmt.Sprintf("password length must be between %d and %d", minPasswordLen, maxPasswordLen))
 	}
 	// Reject multibyte passwords above the bcrypt input limit before hashing.
 	if len(plain) > maxPasswordBytes {
-		return "", fmt.Errorf("[user] password must not exceed %d bytes", maxPasswordBytes)
+		return "", errs.New(ecode.ErrValidation.Code,
+			fmt.Sprintf("password must not exceed %d bytes", maxPasswordBytes))
 	}
 
 	hashed, err := bcrypt.GenerateFromPassword([]byte(plain), bcrypt.DefaultCost)
