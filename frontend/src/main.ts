@@ -1,13 +1,23 @@
-import { createPinia } from 'pinia'
 import { createApp } from 'vue'
-
+import { setupRouter } from '@/router'
+import { setupStore } from '@/stores'
 import App from './App.vue'
-import router from './router'
 import 'virtual:uno.css'
 
-const app = createApp(App)
+// setupApp installs the store and router, then mounts the application.
+async function setupApp() {
+  const app = createApp(App)
 
-app.use(createPinia())
-app.use(router)
+  const pinia = setupStore()
+  app.use(pinia)
 
-app.mount('#app')
+  const router = setupRouter()
+  app.use(router)
+
+  // Wait for the initial navigation so the first render matches the URL.
+  await router.isReady()
+
+  app.mount('#app')
+}
+
+setupApp()
