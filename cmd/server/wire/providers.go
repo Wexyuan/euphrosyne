@@ -5,13 +5,13 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/Wexyuan/euphrosyne/internal/config"
-	"github.com/Wexyuan/euphrosyne/internal/middleware"
-	"github.com/Wexyuan/euphrosyne/internal/module/auth"
-	"github.com/Wexyuan/euphrosyne/pkg/cache"
-	"github.com/Wexyuan/euphrosyne/pkg/database"
-	"github.com/Wexyuan/euphrosyne/pkg/id"
-	"github.com/Wexyuan/euphrosyne/pkg/logger"
+	"github.com/Wexyuan/kairos/internal/config"
+	"github.com/Wexyuan/kairos/internal/middleware"
+	"github.com/Wexyuan/kairos/internal/module/auth"
+	"github.com/Wexyuan/kairos/pkg/cache"
+	"github.com/Wexyuan/kairos/pkg/database"
+	"github.com/Wexyuan/kairos/pkg/id"
+	"github.com/Wexyuan/kairos/pkg/logger"
 )
 
 func provideDatabase(cfg *config.Config, log *logger.Logger) (*database.Database, func(), error) {

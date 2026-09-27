@@ -6,10 +6,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/Wexyuan/euphrosyne/internal/constant"
-	"github.com/Wexyuan/euphrosyne/internal/ecode"
-	"github.com/Wexyuan/euphrosyne/internal/module/auth"
-	"github.com/Wexyuan/euphrosyne/pkg/response"
+	"github.com/Wexyuan/kairos/internal/constant"
+	"github.com/Wexyuan/kairos/internal/ecode"
+	"github.com/Wexyuan/kairos/internal/module/auth"
+	"github.com/Wexyuan/kairos/pkg/response"
 )
 
 // AuthRequired creates the authentication middleware.

@@ -1,9 +1,9 @@
 package server
 
 import (
-	"github.com/Wexyuan/euphrosyne/internal/config"
-	"github.com/Wexyuan/euphrosyne/internal/router"
-	httpserver "github.com/Wexyuan/euphrosyne/pkg/server"
+	"github.com/Wexyuan/kairos/internal/config"
+	"github.com/Wexyuan/kairos/internal/router"
+	httpserver "github.com/Wexyuan/kairos/pkg/server"
 )
 
 // NewHTTPServer creates the HTTP server.

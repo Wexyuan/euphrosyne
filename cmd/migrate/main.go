@@ -5,11 +5,11 @@ import (
 	"log"
 	"os"
 
-	appconfig "github.com/Wexyuan/euphrosyne/internal/config"
-	"github.com/Wexyuan/euphrosyne/internal/module/user"
-	"github.com/Wexyuan/euphrosyne/pkg/config"
-	"github.com/Wexyuan/euphrosyne/pkg/database"
-	"github.com/Wexyuan/euphrosyne/pkg/logger"
+	appconfig "github.com/Wexyuan/kairos/internal/config"
+	"github.com/Wexyuan/kairos/internal/module/user"
+	"github.com/Wexyuan/kairos/pkg/config"
+	"github.com/Wexyuan/kairos/pkg/database"
+	"github.com/Wexyuan/kairos/pkg/logger"
 )
 
 // defaultConfigPath is the default config file path.

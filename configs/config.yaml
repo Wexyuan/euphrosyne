@@ -1,5 +1,5 @@
 app:
-  name: euphrosyne # application name
+  name: kairos # application name
   env: debug # runtime environment (debug/release/test)
   snowflake_node: 1 # snowflake worker node (0-1023)
 
@@ -16,7 +16,7 @@ logger:
 
 database:
   driver: sqlite # database driver (mysql/postgres/sqlite)
-  dsn: euphrosyne.db # data source name
+  dsn: kairos.db # data source name
   max_open_conns: 10 # max open connections (default to 10)
   max_idle_conns: 2 # max idle connections (default to 2)
   conn_max_lifetime: 30 # max connection lifetime in minutes (default to 30)
@@ -30,6 +30,6 @@ cache:
 
 jwt:
   secret: "change-me-in-production" # HS256 signing key
-  issuer: euphrosyne # issuer claim
+  issuer: kairos # issuer claim
   access_ttl: 15m # access token lifetime (default to 15m)
   refresh_ttl: 168h # refresh token lifetime (default to 168h)

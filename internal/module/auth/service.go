@@ -9,9 +9,9 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/Wexyuan/euphrosyne/internal/ecode"
-	"github.com/Wexyuan/euphrosyne/internal/module/base"
-	"github.com/Wexyuan/euphrosyne/internal/module/user"
+	"github.com/Wexyuan/kairos/internal/ecode"
+	"github.com/Wexyuan/kairos/internal/module/base"
+	"github.com/Wexyuan/kairos/internal/module/user"
 )
 
 // AuthService defines the authentication business operations.

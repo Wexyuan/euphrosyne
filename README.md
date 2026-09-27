@@ -1,3 +1,3 @@
-# Euphrosyne
+# Kairos
 
 Coming soon...

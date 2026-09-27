@@ -6,7 +6,7 @@ import { buildThemeOverrides } from '@/theme'
 // useTheme exposes the naive-ui theme objects and the toggle dark mode method.
 export const useTheme = createGlobalState(() => {
   const isDark = useDark({
-    storageKey: 'euphrosyne-color-scheme',
+    storageKey: 'kairos-color-scheme',
   })
   const toggleDark = useToggle(isDark)
 
