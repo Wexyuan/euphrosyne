@@ -1,0 +1,32 @@
+html,
+.theme-light {
+  color-scheme: light;
+  --app-page: #ffffff;
+  --app-content: #f8f8f8;
+  --app-text-main: #171717;
+  --app-text-sub: rgba(0, 0, 0, 0.6);
+  --app-text-hint: rgba(0, 0, 0, 0.4);
+  --app-accent: #171717;
+  --app-border: rgba(0, 0, 0, 0.1);
+}
+
+html.dark,
+.theme-dark {
+  color-scheme: dark;
+  --app-page: #000000;
+  --app-content: #171717;
+  --app-text-main: #f8f8f8;
+  --app-text-sub: rgba(255, 255, 255, 0.6);
+  --app-text-hint: rgba(255, 255, 255, 0.4);
+  --app-accent: #f8f8f8;
+  --app-border: rgba(255, 255, 255, 0.1);
+}
+
+html {
+  background: var(--app-page);
+}
+
+::selection {
+  color: var(--app-page);
+  background: var(--app-text-main);
+}

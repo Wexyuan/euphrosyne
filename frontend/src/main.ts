@@ -3,6 +3,7 @@ import { setupRouter } from '@/router'
 import { setupStore } from '@/stores'
 import App from './App.vue'
 import 'virtual:uno.css'
+import './styles/theme.css'
 
 // setupApp installs the store and router, then mounts the application.
 async function setupApp() {

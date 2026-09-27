@@ -1,14 +1,19 @@
+<script setup lang="ts">
+import { useTheme } from '@/composables'
+
+const { theme, themeOverrides } = useTheme()
+</script>
+
 <template>
-  <n-config-provider>
+  <n-config-provider :theme="theme" :theme-overrides="themeOverrides">
     <n-global-style />
     <n-message-provider>
       <n-dialog-provider>
         <n-notification-provider>
           <n-loading-bar-provider>
-            <div class="wh-screen flex-center">
-              <div class="i-mdi-home text-3xl" />
-            </div>
-            <router-view />
+            <AppLayout>
+              <router-view />
+            </AppLayout>
           </n-loading-bar-provider>
         </n-notification-provider>
       </n-dialog-provider>
