@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Wexyuan/euphrosyne/internal/ecode"
-	"github.com/Wexyuan/euphrosyne/internal/module/base"
+	"github.com/Wexyuan/kairos/internal/ecode"
+	"github.com/Wexyuan/kairos/internal/module/base"
 )
 
 // UserService defines the user business operations.

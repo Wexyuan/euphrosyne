@@ -6,12 +6,12 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	appconfig "github.com/Wexyuan/euphrosyne/internal/config"
-	"github.com/Wexyuan/euphrosyne/internal/middleware"
-	"github.com/Wexyuan/euphrosyne/internal/module/auth"
-	"github.com/Wexyuan/euphrosyne/internal/module/user"
-	"github.com/Wexyuan/euphrosyne/pkg/logger"
-	"github.com/Wexyuan/euphrosyne/pkg/response"
+	appconfig "github.com/Wexyuan/kairos/internal/config"
+	"github.com/Wexyuan/kairos/internal/middleware"
+	"github.com/Wexyuan/kairos/internal/module/auth"
+	"github.com/Wexyuan/kairos/internal/module/user"
+	"github.com/Wexyuan/kairos/pkg/logger"
+	"github.com/Wexyuan/kairos/pkg/response"
 )
 
 // Router manages the HTTP routes and middleware.

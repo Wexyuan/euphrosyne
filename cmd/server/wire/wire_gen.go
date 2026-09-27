@@ -7,15 +7,15 @@
 package wire
 
 import (
-	"github.com/Wexyuan/euphrosyne/internal/config"
-	"github.com/Wexyuan/euphrosyne/internal/module/auth"
-	"github.com/Wexyuan/euphrosyne/internal/module/base"
-	"github.com/Wexyuan/euphrosyne/internal/module/user"
-	"github.com/Wexyuan/euphrosyne/internal/router"
-	"github.com/Wexyuan/euphrosyne/internal/server"
-	"github.com/Wexyuan/euphrosyne/pkg/app"
-	"github.com/Wexyuan/euphrosyne/pkg/logger"
-	server2 "github.com/Wexyuan/euphrosyne/pkg/server"
+	"github.com/Wexyuan/kairos/internal/config"
+	"github.com/Wexyuan/kairos/internal/module/auth"
+	"github.com/Wexyuan/kairos/internal/module/base"
+	"github.com/Wexyuan/kairos/internal/module/user"
+	"github.com/Wexyuan/kairos/internal/router"
+	"github.com/Wexyuan/kairos/internal/server"
+	"github.com/Wexyuan/kairos/pkg/app"
+	"github.com/Wexyuan/kairos/pkg/logger"
+	server2 "github.com/Wexyuan/kairos/pkg/server"
 	"github.com/google/wire"
 )
 

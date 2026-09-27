@@ -9,7 +9,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/Wexyuan/euphrosyne/pkg/server"
+	"github.com/Wexyuan/kairos/pkg/server"
 )
 
 // defaultShutdownTimeout bounds the shutdown timeout of the whole application.

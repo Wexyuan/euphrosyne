@@ -3,7 +3,7 @@ package response
 import (
 	"net/http"
 
-	"github.com/Wexyuan/euphrosyne/pkg/errs"
+	"github.com/Wexyuan/kairos/pkg/errs"
 )
 
 // Response is the unified response structure.

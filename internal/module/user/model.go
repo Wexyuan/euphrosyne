@@ -1,7 +1,7 @@
 package user
 
 import (
-	"github.com/Wexyuan/euphrosyne/internal/module/base"
+	"github.com/Wexyuan/kairos/internal/module/base"
 )
 
 // User is the user entity stored in the database.

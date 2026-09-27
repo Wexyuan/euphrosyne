@@ -5,8 +5,8 @@ import (
 
 	"golang.org/x/crypto/bcrypt"
 
-	"github.com/Wexyuan/euphrosyne/internal/ecode"
-	"github.com/Wexyuan/euphrosyne/pkg/errs"
+	"github.com/Wexyuan/kairos/internal/ecode"
+	"github.com/Wexyuan/kairos/pkg/errs"
 )
 
 const (

@@ -5,8 +5,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/Wexyuan/euphrosyne/internal/ecode"
-	"github.com/Wexyuan/euphrosyne/internal/module/base"
+	"github.com/Wexyuan/kairos/internal/ecode"
+	"github.com/Wexyuan/kairos/internal/module/base"
 )
 
 // AuthHandler exposes the authentication HTTP endpoints.

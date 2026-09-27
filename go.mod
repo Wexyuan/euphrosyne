@@ -1,4 +1,4 @@
-module github.com/Wexyuan/euphrosyne
+module github.com/Wexyuan/kairos
 
 go 1.26.5
 

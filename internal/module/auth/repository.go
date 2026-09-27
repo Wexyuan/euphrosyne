@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Wexyuan/euphrosyne/internal/module/base"
+	"github.com/Wexyuan/kairos/internal/module/base"
 )
 
 // refreshTokenKeyPrefix is the cache key prefix of the refresh token.

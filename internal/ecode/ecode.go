@@ -1,6 +1,6 @@
 package ecode
 
-import "github.com/Wexyuan/euphrosyne/pkg/errs"
+import "github.com/Wexyuan/kairos/pkg/errs"
 
 // Common error codes shared by all modules, ranged 1000-1999.
 var (

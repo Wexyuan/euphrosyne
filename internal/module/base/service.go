@@ -3,7 +3,7 @@ package base
 import (
 	"context"
 
-	"github.com/Wexyuan/euphrosyne/pkg/logger"
+	"github.com/Wexyuan/kairos/pkg/logger"
 )
 
 // Service provides the shared service helpers.

@@ -6,9 +6,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/Wexyuan/euphrosyne/internal/ecode"
-	"github.com/Wexyuan/euphrosyne/pkg/logger"
-	"github.com/Wexyuan/euphrosyne/pkg/response"
+	"github.com/Wexyuan/kairos/internal/ecode"
+	"github.com/Wexyuan/kairos/pkg/logger"
+	"github.com/Wexyuan/kairos/pkg/response"
 )
 
 // Recovery creates the panic recovery middleware.

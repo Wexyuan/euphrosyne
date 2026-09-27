@@ -6,7 +6,7 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/Wexyuan/euphrosyne/internal/module/base"
+	"github.com/Wexyuan/kairos/internal/module/base"
 )
 
 // UserRepository defines the user data operations.

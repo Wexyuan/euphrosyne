@@ -6,10 +6,10 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/Wexyuan/euphrosyne/internal/constant"
-	"github.com/Wexyuan/euphrosyne/pkg/cache"
-	"github.com/Wexyuan/euphrosyne/pkg/database"
-	"github.com/Wexyuan/euphrosyne/pkg/id"
+	"github.com/Wexyuan/kairos/internal/constant"
+	"github.com/Wexyuan/kairos/pkg/cache"
+	"github.com/Wexyuan/kairos/pkg/database"
+	"github.com/Wexyuan/kairos/pkg/id"
 )
 
 // Repository provides the shared data access.
