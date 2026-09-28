@@ -40,3 +40,8 @@ data/
 
 # Env files
 .env
+
+# Wails
+.task/
+*.syso
+build/windows/nsis/MicrosoftEdgeWebview2Setup.exe
