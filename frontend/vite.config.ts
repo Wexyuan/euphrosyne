@@ -1,6 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 
 import vue from '@vitejs/plugin-vue'
+import wails from '@wailsio/runtime/plugins/vite'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
@@ -10,6 +11,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [
     vue(),
+    wails('./bindings'),
     UnoCSS(),
     AutoImport({
       imports: [
@@ -40,6 +42,7 @@ export default defineConfig({
     },
   },
   server: {
+    host: '127.0.0.1',
     port: 5173,
     proxy: {
       '/api': {

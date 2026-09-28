@@ -4,6 +4,7 @@ import unocss from '@unocss/eslint-plugin'
 export default antfu(
   {
     isInEditor: false,
+    ignores: ['bindings/**'],
     formatters: {
       css: true,
       html: true,
