@@ -10,40 +10,22 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/Wexyuan/kairos/internal/ecode"
-	"github.com/Wexyuan/kairos/internal/module/base"
 	"github.com/Wexyuan/kairos/internal/module/user"
 )
 
-// AuthService defines the authentication business operations.
-type AuthService interface {
-	// Register registers a user.
-	Register(ctx context.Context, req *RegisterReq) (*user.UserInfoResp, error)
-	// Login authenticates the user.
-	Login(ctx context.Context, req *LoginReq) (*TokenInfoResp, error)
-	// Refresh refreshes the token pair.
-	Refresh(ctx context.Context, req *RefreshReq) (*TokenInfoResp, error)
-	// Logout logs out the user.
-	Logout(ctx context.Context, userID int64) error
-	// ChangeUserPassword changes the user password.
-	ChangeUserPassword(ctx context.Context, userID int64, req *ChangeUserPasswordReq) error
-}
-
-// authService implements AuthService.
-type authService struct {
-	*base.Service
+// AuthService implements the authentication business operations.
+type AuthService struct {
 	userRepo user.UserRepository // user data operations
 	authRepo AuthRepository      // refresh token data operations
 	tokens   *TokenManager       // token manager
 }
 
 func NewAuthService(
-	baseSvc *base.Service,
 	userRepo user.UserRepository,
 	authRepo AuthRepository,
 	tokens *TokenManager,
-) AuthService {
-	return &authService{
-		Service:  baseSvc,
+) *AuthService {
+	return &AuthService{
 		userRepo: userRepo,
 		authRepo: authRepo,
 		tokens:   tokens,
@@ -51,7 +33,7 @@ func NewAuthService(
 }
 
 // Register registers a user.
-func (s *authService) Register(ctx context.Context, req *RegisterReq) (*user.UserInfoResp, error) {
+func (s *AuthService) Register(ctx context.Context, req *RegisterReq) (*user.UserInfoResp, error) {
 	username := strings.TrimSpace(req.Username)
 
 	taken, err := s.userRepo.ExistsUserByUsername(ctx, username)
@@ -85,7 +67,7 @@ func (s *authService) Register(ctx context.Context, req *RegisterReq) (*user.Use
 }
 
 // Login authenticates the user.
-func (s *authService) Login(ctx context.Context, req *LoginReq) (*TokenInfoResp, error) {
+func (s *AuthService) Login(ctx context.Context, req *LoginReq) (*TokenInfoResp, error) {
 	username := strings.TrimSpace(req.Username)
 
 	u, err := s.userRepo.GetUserByUsername(ctx, username)
@@ -107,7 +89,7 @@ func (s *authService) Login(ctx context.Context, req *LoginReq) (*TokenInfoResp,
 }
 
 // Refresh refreshes the token pair.
-func (s *authService) Refresh(ctx context.Context, req *RefreshReq) (*TokenInfoResp, error) {
+func (s *AuthService) Refresh(ctx context.Context, req *RefreshReq) (*TokenInfoResp, error) {
 	userID, ok := s.tokens.ParseRefreshToken(req.RefreshToken)
 	if !ok {
 		return nil, ecode.ErrAuthInvalidRefreshToken
@@ -133,7 +115,7 @@ func (s *authService) Refresh(ctx context.Context, req *RefreshReq) (*TokenInfoR
 }
 
 // Logout logs out the user.
-func (s *authService) Logout(ctx context.Context, userID int64) error {
+func (s *AuthService) Logout(ctx context.Context, userID int64) error {
 	if err := s.authRepo.DeleteRefreshToken(ctx, userID); err != nil {
 		return fmt.Errorf("[auth] delete refresh token error: user_id=%d: %w", userID, err)
 	}
@@ -141,7 +123,7 @@ func (s *authService) Logout(ctx context.Context, userID int64) error {
 }
 
 // ChangeUserPassword changes the user password.
-func (s *authService) ChangeUserPassword(ctx context.Context, userID int64, req *ChangeUserPasswordReq) error {
+func (s *AuthService) ChangeUserPassword(ctx context.Context, userID int64, req *ChangeUserPasswordReq) error {
 	u, err := s.userRepo.GetUserByID(ctx, userID)
 	if err != nil {
 		return fmt.Errorf("[auth] get user by id error: id=%d: %w", userID, err)
@@ -171,7 +153,7 @@ func (s *authService) ChangeUserPassword(ctx context.Context, userID int64, req 
 }
 
 // issueTokens issues a token pair.
-func (s *authService) issueTokens(ctx context.Context, userID int64, username string) (*TokenInfoResp, error) {
+func (s *AuthService) issueTokens(ctx context.Context, userID int64, username string) (*TokenInfoResp, error) {
 	access, ttl, err := s.tokens.GenerateAccessToken(userID, username)
 	if err != nil {
 		return nil, err
