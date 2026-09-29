@@ -11,6 +11,7 @@ import (
 	"github.com/Wexyuan/kairos/internal/config"
 	"github.com/Wexyuan/kairos/internal/module/auth"
 	"github.com/Wexyuan/kairos/internal/module/base"
+	"github.com/Wexyuan/kairos/internal/module/desktop"
 	"github.com/Wexyuan/kairos/internal/module/user"
 	"github.com/Wexyuan/kairos/pkg/logger"
 )
@@ -30,11 +31,13 @@ var ModuleProviderSet = wire.NewSet(
 	user.NewUserService,
 	auth.NewAuthRepository,
 	auth.NewAuthService,
+	desktop.NewWindowService,
 )
 
 func NewApp(
 	userSvc *user.UserService,
 	authSvc *auth.AuthService,
+	winSvc *desktop.WindowService,
 ) *application.App {
 	return application.New(
 		application.Options{
@@ -42,6 +45,7 @@ func NewApp(
 			Services: []application.Service{
 				application.NewService(userSvc),
 				application.NewService(authSvc),
+				application.NewService(winSvc),
 			},
 			Assets: application.AssetOptions{
 				Handler: application.AssetFileServerFS(kairos.Assets),

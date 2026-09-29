@@ -11,6 +11,7 @@ import (
 	"github.com/Wexyuan/kairos/internal/config"
 	"github.com/Wexyuan/kairos/internal/module/auth"
 	"github.com/Wexyuan/kairos/internal/module/base"
+	"github.com/Wexyuan/kairos/internal/module/desktop"
 	"github.com/Wexyuan/kairos/internal/module/user"
 	"github.com/Wexyuan/kairos/pkg/logger"
 	"github.com/google/wire"
@@ -45,7 +46,8 @@ func NewWireApp(cfg *config.Config, log *logger.Logger) (*application.App, func(
 		return nil, nil, err
 	}
 	authService := auth.NewAuthService(userRepository, authRepository, tokenManager)
-	app := NewApp(userService, authService)
+	windowService := desktop.NewWindowService()
+	app := NewApp(userService, authService, windowService)
 	return app, func() {
 		cleanup2()
 		cleanup()
@@ -63,15 +65,16 @@ var InfraProviderSet = wire.NewSet(
 )
 
 // ModuleProviderSet defines the business module providers.
-var ModuleProviderSet = wire.NewSet(base.NewRepository, user.NewUserRepository, user.NewUserService, auth.NewAuthRepository, auth.NewAuthService)
+var ModuleProviderSet = wire.NewSet(base.NewRepository, user.NewUserRepository, user.NewUserService, auth.NewAuthRepository, auth.NewAuthService, desktop.NewWindowService)
 
 func NewApp(
 	userSvc *user.UserService,
 	authSvc *auth.AuthService,
+	winSvc *desktop.WindowService,
 ) *application.App {
 	return application.New(application.Options{
 		Name:     "kairos",
-		Services: []application.Service{application.NewService(userSvc), application.NewService(authSvc)},
+		Services: []application.Service{application.NewService(userSvc), application.NewService(authSvc), application.NewService(winSvc)},
 		Assets: application.AssetOptions{
 			Handler: application.AssetFileServerFS(kairos.Assets),
 		},

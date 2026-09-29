@@ -55,6 +55,7 @@ func main() {
 
 	// 5. Create the main window.
 	app.Window.NewWithOptions(application.WebviewWindowOptions{
+		Name:             "main",
 		Title:            "Kairos",
 		Width:            1280,
 		Height:           800,
