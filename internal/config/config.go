@@ -5,7 +5,6 @@ import "time"
 // Config holds the application configuration.
 type Config struct {
 	App      App      `mapstructure:"app"`      // application identity settings
-	Server   Server   `mapstructure:"server"`   // HTTP server settings
 	Logger   Logger   `mapstructure:"logger"`   // logger settings
 	Database Database `mapstructure:"database"` // database settings
 	Cache    Cache    `mapstructure:"cache"`    // cache settings
@@ -17,14 +16,6 @@ type App struct {
 	Name          string `mapstructure:"name"`           // application name
 	Env           string `mapstructure:"env"`            // runtime environment (debug/release/test)
 	SnowflakeNode int64  `mapstructure:"snowflake_node"` // snowflake worker node (0-1023)
-}
-
-// Server holds the HTTP server settings.
-type Server struct {
-	Addr            string        `mapstructure:"addr"`             // listen address (default to :8080)
-	ReadTimeout     time.Duration `mapstructure:"read_timeout"`     // max request read time (default to 10s)
-	WriteTimeout    time.Duration `mapstructure:"write_timeout"`    // max response write time (default to 10s)
-	ShutdownTimeout time.Duration `mapstructure:"shutdown_timeout"` // max shutdown time (default to 5s)
 }
 
 // Logger holds the logger settings.

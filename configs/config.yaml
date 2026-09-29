@@ -3,12 +3,6 @@ app:
   env: debug # runtime environment (debug/release/test)
   snowflake_node: 1 # snowflake worker node (0-1023)
 
-server:
-  addr: ":8080" # listen address (default to :8080)
-  read_timeout: 10s # max request read time (default to 10s)
-  write_timeout: 10s # max response write time (default to 10s)
-  shutdown_timeout: 5s # max shutdown time (default to 5s)
-
 logger:
   level: info # minimum log level (debug/info/warn/error)
   format: console # log encoding format (console/json)
