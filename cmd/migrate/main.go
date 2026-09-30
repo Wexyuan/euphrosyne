@@ -48,14 +48,13 @@ func main() {
 
 	// 4. Open the database.
 	db, err := database.New(database.Options{
-		Driver:          cfg.Database.Driver,
 		DSN:             cfg.Database.DSN,
 		MaxOpenConns:    cfg.Database.MaxOpenConns,
 		MaxIdleConns:    cfg.Database.MaxIdleConns,
 		ConnMaxLifetime: cfg.Database.ConnMaxLifetime,
 	})
 	if err != nil {
-		log.Fatalf("[migrate] init database error: driver=%s: %v", cfg.Database.Driver, err)
+		log.Fatalf("[migrate] init database error: dsn=%s: %v", cfg.Database.DSN, err)
 	}
 	defer func() {
 		if err := db.Close(); err != nil {
@@ -67,5 +66,5 @@ func main() {
 	if err := db.AutoMigrate(&user.User{}); err != nil {
 		log.Fatalf("[migrate] migrate models error: %v", err)
 	}
-	lg.Infof("migrated models successfully on driver %s", cfg.Database.Driver)
+	lg.Infof("migrated models successfully")
 }

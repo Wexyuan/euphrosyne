@@ -2,12 +2,9 @@ package database
 
 import (
 	"fmt"
-	"strings"
 	"time"
 
 	"github.com/glebarez/sqlite"
-	"gorm.io/driver/mysql"
-	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
@@ -18,7 +15,6 @@ type Database struct {
 
 // Options holds the database settings.
 type Options struct {
-	Driver          string // database driver (mysql/postgres/sqlite)
 	DSN             string // data source name
 	MaxOpenConns    int    // max open connections (default to 10)
 	MaxIdleConns    int    // max idle connections (default to 2)
@@ -26,19 +22,11 @@ type Options struct {
 }
 
 func New(opts Options) (*Database, error) {
-	if opts.Driver == "" {
-		return nil, fmt.Errorf("[database] driver is required")
-	}
 	if opts.DSN == "" {
 		return nil, fmt.Errorf("[database] dsn is required")
 	}
 
-	dialector, err := opts.resolveDialector()
-	if err != nil {
-		return nil, err
-	}
-
-	db, err := gorm.Open(dialector, &gorm.Config{
+	db, err := gorm.Open(sqlite.Open(opts.DSN), &gorm.Config{
 		// Translate driver errors so unique violations become gorm.ErrDuplicatedKey.
 		TranslateError: true,
 	})
@@ -71,20 +59,6 @@ func New(opts Options) (*Database, error) {
 	sqlDB.SetConnMaxLifetime(time.Duration(lifetime) * time.Minute)
 
 	return &Database{DB: db}, nil
-}
-
-// resolveDialector resolves the dialector from the configured driver.
-func (o Options) resolveDialector() (gorm.Dialector, error) {
-	switch strings.ToLower(o.Driver) {
-	case "mysql":
-		return mysql.Open(o.DSN), nil
-	case "postgres":
-		return postgres.Open(o.DSN), nil
-	case "sqlite":
-		return sqlite.Open(o.DSN), nil
-	default:
-		return nil, fmt.Errorf("[database] invalid driver %q: must be mysql, postgres or sqlite", o.Driver)
-	}
 }
 
 // Close closes the database connection.

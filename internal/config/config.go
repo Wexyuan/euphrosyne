@@ -27,7 +27,6 @@ type Logger struct {
 
 // Database holds the database settings.
 type Database struct {
-	Driver          string `mapstructure:"driver"`            // database driver (mysql/postgres/sqlite)
 	DSN             string `mapstructure:"dsn"`               // data source name
 	MaxOpenConns    int    `mapstructure:"max_open_conns"`    // max open connections (default to 10)
 	MaxIdleConns    int    `mapstructure:"max_idle_conns"`    // max idle connections (default to 2)
@@ -36,11 +35,7 @@ type Database struct {
 
 // Cache holds the cache settings.
 type Cache struct {
-	Driver   string `mapstructure:"driver"`   // cache driver (memory/redis)
-	TTL      int    `mapstructure:"ttl"`      // expiration in seconds (default to 300)
-	Addr     string `mapstructure:"addr"`     // redis address (host:port)
-	Password string `mapstructure:"password"` // redis password
-	DB       int    `mapstructure:"db"`       // redis database (default to 0)
+	TTL int `mapstructure:"ttl"` // expiration in seconds (default to 300)
 }
 
 // JWT holds the access and refresh token settings.

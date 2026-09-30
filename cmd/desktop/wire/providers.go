@@ -13,14 +13,13 @@ import (
 
 func provideDatabase(cfg *config.Config, log *logger.Logger) (*database.Database, func(), error) {
 	db, err := database.New(database.Options{
-		Driver:          cfg.Database.Driver,
 		DSN:             cfg.Database.DSN,
 		MaxOpenConns:    cfg.Database.MaxOpenConns,
 		MaxIdleConns:    cfg.Database.MaxIdleConns,
 		ConnMaxLifetime: cfg.Database.ConnMaxLifetime,
 	})
 	if err != nil {
-		return nil, nil, fmt.Errorf("[wire] init database error: driver=%s: %w", cfg.Database.Driver, err)
+		return nil, nil, fmt.Errorf("[wire] init database error: dsn=%s: %w", cfg.Database.DSN, err)
 	}
 	return db, func() {
 		if err := db.Close(); err != nil {
@@ -35,14 +34,10 @@ func provideSnowflake(cfg *config.Config) (*id.Snowflake, error) {
 
 func provideCache(cfg *config.Config, log *logger.Logger) (cache.Cache, func(), error) {
 	store, err := cache.New(cache.Options{
-		Driver:   cfg.Cache.Driver,
-		Addr:     cfg.Cache.Addr,
-		Password: cfg.Cache.Password,
-		DB:       cfg.Cache.DB,
-		TTL:      cfg.Cache.TTL,
+		TTL: cfg.Cache.TTL,
 	})
 	if err != nil {
-		return nil, nil, fmt.Errorf("[wire] init cache error: driver=%s: %w", cfg.Cache.Driver, err)
+		return nil, nil, fmt.Errorf("[wire] init cache error: ttl=%d: %w", cfg.Cache.TTL, err)
 	}
 	return store, func() {
 		if err := store.Close(); err != nil {

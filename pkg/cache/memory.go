@@ -20,7 +20,7 @@ func newMemoryCache(ttl time.Duration) *memoryCache {
 
 // Set stores the value under the key.
 func (c *memoryCache) Set(ctx context.Context, key, value string, ttl int) error {
-	// Use a single default so both drivers share the same expiration semantics.
+	// Fall back to the default so a missing ttl keeps entries expiring.
 	if ttl <= 0 {
 		ttl = int(c.ttl.Seconds())
 	}
