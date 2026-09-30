@@ -7,8 +7,10 @@ import (
 
 	"github.com/wailsapp/wails/v3/pkg/application"
 
+	"github.com/Wexyuan/kairos"
 	"github.com/Wexyuan/kairos/cmd/desktop/wire"
 	appconfig "github.com/Wexyuan/kairos/internal/config"
+	"github.com/Wexyuan/kairos/internal/module/desktop"
 	"github.com/Wexyuan/kairos/pkg/config"
 	"github.com/Wexyuan/kairos/pkg/logger"
 )
@@ -54,7 +56,7 @@ func main() {
 	defer cleanup()
 
 	// 5. Create the main window.
-	app.Window.NewWithOptions(application.WebviewWindowOptions{
+	win := app.Window.NewWithOptions(application.WebviewWindowOptions{
 		Name:             "main",
 		Title:            "Kairos",
 		Width:            1280,
@@ -63,7 +65,10 @@ func main() {
 		URL:              "/",
 	})
 
-	// 6. Run until the window is closed.
+	// 6. Run the system tray.
+	desktop.NewTray(win, kairos.TrayIcon).Run()
+
+	// 7. Run until the window is closed.
 	if err := app.Run(); err != nil {
 		log.Fatalf("[main] run application error: %v", err)
 	}
