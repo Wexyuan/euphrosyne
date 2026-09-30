@@ -10,22 +10,20 @@ function black(alpha: number): string {
 
 // buildThemeOverrides creates the naive-ui theme overrides for the given mode.
 export function buildThemeOverrides(dark: boolean): GlobalThemeOverrides {
-  const main = dark ? '#F8F8F8' : '#171717'
+  const main = dark ? '#E5E5E5' : '#1A1A1A'
   const overlay = dark ? white : black
-  const border = overlay(0.1)
+  const border = overlay(0.12)
 
   return {
     common: {
       borderRadius: '8px',
       borderColor: border,
       primaryColor: main,
-      primaryColorHover: dark ? '#EDEDED' : '#333333',
-      primaryColorPressed: dark ? '#B8B8B8' : '#000000',
       primaryColorSuppl: main,
     },
     Layout: {
-      color: dark ? '#000000' : '#FFFFFF',
-      siderColor: dark ? '#000000' : '#FFFFFF',
+      color: dark ? '#0A0A0A' : '#F5F5F5',
+      siderColor: dark ? '#0A0A0A' : '#F5F5F5',
     },
     Button: {
       textColor: overlay(0.45),

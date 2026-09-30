@@ -31,9 +31,9 @@ func (s *WindowService) SetTheme(ctx context.Context, req *SetThemeReq) error {
 			return
 		}
 		// Colours use the 0x00BBGGRR layout and must match the web layout background.
-		bg, text := uint32(0x00FFFFFF), uint32(0x00171717)
+		bg, text := uint32(0x00F5F5F5), uint32(0x001A1A1A)
 		if req.Dark {
-			bg, text = uint32(0x00000000), uint32(0x00F8F8F8)
+			bg, text = uint32(0x000A0A0A), uint32(0x00E5E5E5)
 		}
 		w32.SetTheme(hwnd, req.Dark)
 		w32.SetTitleBarColour(hwnd, bg)

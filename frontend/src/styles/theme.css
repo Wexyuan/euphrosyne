@@ -1,25 +1,25 @@
 html,
 .theme-light {
   color-scheme: light;
-  --app-page: #ffffff;
-  --app-content: #f8f8f8;
-  --app-text-main: #171717;
-  --app-text-sub: rgba(0, 0, 0, 0.6);
-  --app-text-hint: rgba(0, 0, 0, 0.4);
-  --app-accent: #171717;
-  --app-border: rgba(0, 0, 0, 0.1);
+  --app-page: #f5f5f5;
+  --app-content: #efefef;
+  --app-text-main: #1a1a1a;
+  --app-text-sub: color-mix(in srgb, var(--app-text-main) 60%, transparent);
+  --app-text-hint: color-mix(in srgb, var(--app-text-main) 40%, transparent);
+  --app-accent: #1a1a1a;
+  --app-border: color-mix(in srgb, var(--app-text-main) 12%, transparent);
 }
 
 html.dark,
 .theme-dark {
   color-scheme: dark;
-  --app-page: #000000;
-  --app-content: #171717;
-  --app-text-main: #f8f8f8;
-  --app-text-sub: rgba(255, 255, 255, 0.6);
-  --app-text-hint: rgba(255, 255, 255, 0.4);
-  --app-accent: #f8f8f8;
-  --app-border: rgba(255, 255, 255, 0.1);
+  --app-page: #0a0a0a;
+  --app-content: #101010;
+  --app-text-main: #e5e5e5;
+  --app-text-sub: color-mix(in srgb, var(--app-text-main) 60%, transparent);
+  --app-text-hint: color-mix(in srgb, var(--app-text-main) 40%, transparent);
+  --app-accent: #e5e5e5;
+  --app-border: color-mix(in srgb, var(--app-text-main) 12%, transparent);
 }
 
 html {
